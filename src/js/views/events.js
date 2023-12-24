@@ -11,13 +11,13 @@ export const Events = () => {
 	return (
 		<div className="container">
 			<ul className="list-group">
-				{store.demo.map((item, index) => {
+				{store.events.map((item, index) => {
 					return (
 						<li
 							key={index}
 							className="list-group-item d-flex justify-content-between"
 							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
+							<Link to={"/meetup/" + index}>
 								<span>Link to: {item.title}</span>
 							</Link>
 							{// Conditional render example
