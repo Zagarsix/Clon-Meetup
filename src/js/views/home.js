@@ -1,15 +1,13 @@
 import React from "react";
-import rigoImage from "../../img/rigo-baby.jpg";
+import rigoImage from "../../img/logo-4GeeksAcademy.png";
 import "../../styles/home.css";
 
+//Home is the "Event list"
 export const Home = () => (
 	<div className="text-center mt-5">
-		<h1>Hello Rigo!</h1>
-		<p>
-			<img src={rigoImage} />
-		</p>
-		<a href="#" className="btn btn-success">
-			If you see this green button, bootstrap is working
-		</a>
+	
+		<h1>The Meetup Clone</h1>
+		<h3>This is a mini project created by <span> 4GeeksAcademy</span></h3>
+		<h5>cbdnldnkckdmkcmdkmckdmkcmdkcmkd</h5>
 	</div>
 );
