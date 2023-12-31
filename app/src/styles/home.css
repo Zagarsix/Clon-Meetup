@@ -16,3 +16,8 @@ footer {
   height: 40px;
   color: white;
 }
+
+.Navbar main{
+  display: inline-block;
+  background-color: blue !important;
+}
