@@ -1,23 +1,59 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../img/logo-4GeeksAcademy.png";
-
+import { useState } from "react";
 
 export const Navbar = () => {
+	const [showPassword, setShowPassword] = useState(false);
 	return (
 
 		<div className="container-fluid d-flex justify-content-between" style={{ backgroundColor: "grey" }}
-		fixed="top"
-		expand="lg"
-		
-		>
-			<div className="container-fluid logo py-2 mb-1">
-				<Link className="navbar-brand me-5" to="/">
-					<img src={logo} alt="logo-4Geeks" width={200} height={100}></img>
+			fixed="top"
+			expand="lg"	>
+			<div className="container-fluid logo py-2">
+				<Link className="navbar-brand" to="/">
+					<img src={logo} alt="logo-4Geeks" width={180} height={100}></img>
 				</Link>
 			</div>
-			<div className="button-login py-3 m-2">
-				<button type="button" className="btn btn-primary" to="/login">Login</button>
+
+			<div className="button py-3 m-2">
+				{/* <!-- Button trigger modal --> */}
+				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+					Login
+				</button>
+
+				{/* <!-- Modal --> */}
+				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<div class="d-flex col-md-6">
+									<input type="text" class="form-control" id="Username" placeholder="Username">
+									</input>
+									<span>
+										<i className="eyeSecurity fa fa-eye" aria-hidden="true"></i>
+									</span>
+								</div>
+								<div Class="d-flex col-md-6">
+									<input type="text" Class="form-control" id="Password" placeholder="Password">
+									</input>
+									<span>
+										<i className="eyeSecurity fa fa-eye" aria-hidden="true"></i>
+									</span>
+								</div>
+
+							</div>
+							<div className="modal-footer justify-content-start">
+								<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Login</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
 

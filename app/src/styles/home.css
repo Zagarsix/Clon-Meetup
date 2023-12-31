@@ -6,6 +6,7 @@ html {
 body {
   margin: 0;
   margin-bottom: 40px;
+  text-decoration: none !important;
 }
 
 footer {
@@ -20,4 +21,24 @@ footer {
 .Navbar main{
   display: inline-block;
   background-color: blue !important;
+}
+
+.eyeSecurity {
+  text-align: center;
+  margin-right:30px;
+  display: block;
+  margin-top: 10px;
+  position: absolute;
+
+}
+
+.container{
+  flex-direction: column;
+  padding-left: 50px;
+  border-style: solid;
+  border-color: rgb(179, 177, 177);
+  border-radius: 5px;
+  height: 200px;
+  width: 800px;
+
 }
