@@ -9,17 +9,16 @@ export const Events = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
-		<div className="container">
+		<div className="tittle-events">
+			<div>
 				<div className="text-center" style={{ backgroundColor: "grey" }}>
 				<main className="main-section w-100 h-100 p-3 mb-1">
-				<p>Apr 28</p>
+						<p>Apr 28</p>
 				<h6>5th Event for meetup 1</h6>
-					<h6>Using: ReactJS, Bootstrap, @Fortawesome, Moment, React-router </h6>
-					<Link to={"/meetup/" + index}>
-								<span>Meetup 1 {item.title}</span>
-					</Link>
 					{store.prueba}
 				</main>
+
+			</div>
 			</div>
 			<ul className="list-group">
 				{store.events.map((item, index) => {

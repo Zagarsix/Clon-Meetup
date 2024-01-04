@@ -1,18 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../img/logo-4GeeksAcademy.png";
+import logo from "../../img/Meetup-logo.png";
 import { useState } from "react";
 
 export const Navbar = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	return (
 
-		<div className="container-fluid d-flex justify-content-between" style={{ backgroundColor: "grey" }}
+		<div className="container-fluid d-flex justify-content-between" style={{ backgroundColor: "rgb(66,66,66)" }}
 			fixed="top"
 			expand="lg"	>
 			<div className="container-fluid logo py-2">
 				<Link className="navbar-brand" to="/">
-					<img src={logo} alt="logo-4Geeks" width={180} height={100}></img>
+					<img src={logo} alt="logo-4Geeks" width={250} height={150}></img>
 				</Link>
 			</div>
 
