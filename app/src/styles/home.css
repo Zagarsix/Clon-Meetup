@@ -6,30 +6,31 @@ html {
 body {
   margin: 0;
   margin-bottom: 40px;
-  text-decoration: none !important;
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
 }
 
 footer {
-  background-color: black;
-  position: absolute;
+  background-color: rgb(66,66,66);
   bottom: 0;
   width: 100%;
   height: 40px;
   color: white;
 }
 
-.Navbar main{
-  display: inline-block;
-  background-color: blue !important;
+.form-control{
+  position: relative;
 }
 
-.eyeSecurity {
-  text-align: center;
-  margin-right:30px;
-  display: block;
-  margin-top: 10px;
+#icon-eye{
   position: absolute;
-
+  display: block;
+  text-align: center;
+  margin-top: 5px;
+  margin-left: 200px;
+  user-select: none;
+  cursor: pointer;
 }
 
 .container{
@@ -40,5 +41,4 @@ footer {
   border-radius: 5px;
   height: 200px;
   width: 800px;
-
 }

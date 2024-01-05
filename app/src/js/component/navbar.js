@@ -34,15 +34,12 @@ export const Navbar = () => {
 								<div class="d-flex col-md-6">
 									<input type="text" class="form-control" id="Username" placeholder="Username">
 									</input>
-									<span>
-										<i className="eyeSecurity fa fa-eye" aria-hidden="true"></i>
-									</span>
 								</div>
 								<div Class="d-flex col-md-6">
 									<input type="text" Class="form-control" id="Password" placeholder="Password">
 									</input>
-									<span>
-										<i className="eyeSecurity fa fa-eye" aria-hidden="true"></i>
+									<span id="icon-eye">
+										<i className="fa fa-eye" aria-hidden="true"></i>
 									</span>
 								</div>
 

@@ -3,17 +3,84 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			events: [
 				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
+					ID: 2,
+					title: "Charla Anual de Ortodoncia",
+					content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla vehicula luctus. Maecenas vehicula nisl velit, ac iaculis lacus venenatis id. Duis eleifend ac justo a ultricies. Praesent feugiat ligula.",
+					meta_keys: {
+						day: "Enero 28",
+						time: "10:00 am",
+						meetup: "1",
+					}
 				},
 				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
+					ID: 4,
+					title: "Estética facial",
+					content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat ultrices tempor. Curabitur id nunc risus. Duis sapien turpis, vehicula sed massa in, hendrerit commodo arcu. In est sem, ullamcorper venenatis scelerisque consequat, dapibus a",
+					meta_keys: {
+						day: "Enero 10",
+						time: "03:00 pm",
+						meetup: "1",
+					}
+				},
+				{
+					ID: 6,
+					title: "Junta Local de fútbol",
+					content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat ultrices tempor. Curabitur id nunc risus. Duis sapien turpis, vehicula sed massa in, hendrerit commodo arcu. In est sem, ullamcorper venenatis scelerisque consequat, dapibus a",
+					meta_keys: {
+						day: "Enero 8",
+						time: "07:00 pm",
+						meetup: "2",
+					}
+				},
+				{
+					ID: 8,
+					title: "Influencia del fútbol en la juventud",
+					content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat ultrices tempor. Curabitur id nunc risus. Duis sapien turpis, vehicula sed massa in, hendrerit commodo arcu. In est sem, ullamcorper venenatis scelerisque consequat, dapibus a",
+					meta_keys: {
+						day: "Enero 12",
+						time: "12:00 pm",
+						meetup: "2",
+					}
+				},
+				{
+					ID: 10,
+					title: "Conversatorio regional",
+					content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat ultrices tempor. Curabitur id nunc risus. Duis sapien turpis, vehicula sed massa in, hendrerit commodo arcu. In est sem, ullamcorper venenatis scelerisque consequat, dapibus a",
+					meta_keys: {
+						day: "Febrero 2",
+						time: "02:00 pm",
+						meetup: "3",
+					}
+				},
+				{
+					ID: 12,
+					title: "Proyectos varios",
+					content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat ultrices tempor. Curabitur id nunc risus. Duis sapien turpis, vehicula sed massa in, hendrerit commodo arcu. In est sem, ullamcorper venenatis scelerisque consequat, dapibus a",
+					meta_keys: {
+						day: "Febrero 17",
+						time: "09:00 am",
+						meetup: "3",
+					}
+				},				
 			],
-			prueba: "rojo"
+			meetups: [
+				{
+					ID: 1,
+					name: "The best dentists",
+					description: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit",
+				},
+				{
+					ID: 2,
+					name: "Santa Cruz Team",
+					description:"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit",
+				},
+				{
+					ID: 3,
+					name: "Generation of lions",
+					description:"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit",
+				},
+
+			]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction

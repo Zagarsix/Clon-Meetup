@@ -15,14 +15,14 @@ export const Events = () => {
 				<h1 style={{ backgroundColor: "blue"}}>5th Event for meetup 1</h1>
 
 				<p>
-					{store.events.map((item, index) => {
+					{store.meetups.map((item, index) => {
 						return (
 							<h5
 								key={index}
 								className="list-group-item d-flex justify-content-between"
 								style={{ background: item.background }}>
 								<Link to={"/meetup/" + index}>
-									<span>Meetup {item.title}</span>
+									<span>Meetup {item.name}</span>
 								</Link>
 								
 							</h5>

@@ -9,59 +9,47 @@ export const Home = () => {
 	return (
 		<>
 
-			<div className="text-center" style={{ backgroundColor: "rgb(66,66,66)", color:"white"}}>
+			<div className="text-center" style={{ backgroundColor: "rgb(66,66,66)", color: "white" }}>
 				<main className="main-section w-100 h-100 p-3 mb-1">
 					<h1>The Meetup Clone</h1>
-					<h3>This is a mini project created by <a href="https://4geeksacademy.com" className="text-primary" style={{textDecoration:"none"}}> 4GeeksAcademy</a></h3>
-					<h6>Using: ReactJS, Bootstrap, @Fortawesome, Moment, React-router </h6>
-					{store.prueba}
+					<h5>This is a mini project created by <a href="https://4geeksacademy.com" className="text-primary" style={{ textDecoration: "none" }}> 4GeeksAcademy</a></h5>
+					<p>Using: ReactJS, Bootstrap, @Fortawesome, Moment, React-router </p>
 				</main>
-
 			</div>
-			<div className="container d-flex justify-content-between align-items-center py-1" style={{background:"green"}}>
-				<div className="DateEvent justify-content-start" style={{background:"pink"}}>
-					<h1>April 28</h1>
-				</div>
-				<div className="Hour and tittle d-flex" style={{background:"red"}}>
-					<div className="Hour">
-						<h2>7:00 am</h2>
-					</div>
-					<div className="ml-auto">
-						<Link to="/events" style={{textDecoration:"none"}}>
-							<p>5th Event for meetup 1</p>
-						</Link>
-						<Link to="/meetup" style={{textDecoration:"none"}}>
-							<p>Meetup 1</p>
-						</Link>
-					</div>
-				</div>
 
-			</div>
+			{store.events.map((item, index) => {
+				return (
+					<div className="container d-flex justify-content-between py-1 mt-3" style={{ background: "green" }}>
+						<div className="list-group  py-2 h-350 w-450">
+							<div className="DateEvent justify-content-start p-2 mb-2" style={{ background: "pink" }}>
+								<h1>Hola{item.day}</h1>
+							</div>
+							<main className="Hour and tittle d-flex" style={{ background: "red" }}>
+								<section className="Hour p-1 m-1">
+									<h2>7:00 am</h2>
+								</section>
+								<h5
+									key={index}
+									className="list-group-item d-flex justify-content-between"
+									style={{ background: item.background }}>
+									<Link to={"/meetup/" + index} style={{ textDecoration: "none" }}>
+										<p>{item.title}</p>
+									</Link>
+									</h5>
+									<h5 key={index}
+									className="list-group-item d-flex justify-content-between"
+									style={{ background: item.background }}>
+									<Link to="/meetup" style={{ textDecoration: "none" }}>
+										<p>{item.meetups}</p>
+									</Link>
+								</h5>
+							</main>
+						</div>
+					</div>
+				);
+			})}
+
 		</>
 	)
 };
 
-{/* <ul className="list-group">
-				{store.events.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/meetup/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-								// Check to see if the background is orange, if so, display the message
-								item.background === "orange" ? (
-									<p style={{ color: item.initial }}>
-										Check store/flux.js scroll to the actions to see the code
-									</p>
-								) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul> */}
