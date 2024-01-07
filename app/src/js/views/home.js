@@ -19,31 +19,32 @@ export const Home = () => {
 
 			{store.events.map((item, index) => {
 				return (
-					<div className="container d-flex justify-content-between py-1 mt-3" style={{ background: "green" }}>
-						<div className="list-group  py-2 h-350 w-450">
-							<div className="DateEvent justify-content-start p-2 mb-2" style={{ background: "pink" }}>
-								<h1>Hola{item.day}</h1>
+					<div className="container d-flex justify-content-between py-2 mt-2">
+						<div className="list-group-item  py-2">
+							<div className="dateEvent">
+								<h1>{item.day}</h1>
 							</div>
-							<main className="Hour and tittle d-flex" style={{ background: "red" }}>
-								<section className="Hour p-1 m-1">
-									<h2>7:00 am</h2>
-								</section>
+							<div className="Hour and tittle d-flex align-items-end my-3">
+								<h2 className="Hour px-1 mx-2">
+									{item.time}
+								</h2>
 								<h5
-									key={index}
-									className="list-group-item d-flex justify-content-between"
-									style={{ background: item.background }}>
-									<Link to={"/meetup/" + index} style={{ textDecoration: "none" }}>
-										<p>{item.title}</p>
-									</Link>
-									</h5>
-									<h5 key={index}
-									className="list-group-item d-flex justify-content-between"
-									style={{ background: item.background }}>
-									<Link to="/meetup" style={{ textDecoration: "none" }}>
-										<p>{item.meetups}</p>
+									className=" px-2 mx-5">
+									<Link to={"/events"} style={{ textDecoration: "none" }}>
+										{item.title}
 									</Link>
 								</h5>
-							</main>
+
+								{store.meetups.map((item, index) => {
+									<h5 key={index}
+										className="list-group-item">
+										<Link to="/meetup" style={{ textDecoration: "none" }}>
+											{item.name}
+										</Link>
+									</h5>
+								})}
+								
+							</div>
 						</div>
 					</div>
 				);
