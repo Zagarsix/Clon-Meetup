@@ -5,7 +5,8 @@ import { Context } from "../store/appContext";
 
 //Home is the "Event list"
 export const Home = () => {
-	const { store } = useContext(Context)
+	const { store, actions } = useContext(Context);
+
 	return (
 		<>
 
@@ -19,31 +20,27 @@ export const Home = () => {
 
 			{store.events.map((item, index) => {
 				return (
-					<div className="container d-flex justify-content-between py-2 mt-2">
-						<div className="list-group-item  py-2">
+					<div className="container d-flex justify-content-between py-1 mt-2" style={{background:"red"}}>
+						<div className="list-group-item">
 							<div className="dateEvent">
 								<h1>{item.day}</h1>
 							</div>
-							<div className="Hour and tittle d-flex align-items-end my-3">
-								<h2 className="Hour px-1 mx-2">
+							<div className="Hour and tittle d-flex justify-content-between my-2" style={{background:"green"}}>
+								<h2 className="Hour mx-1">
 									{item.time}
 								</h2>
-								<h5
-									className=" px-2 mx-5">
+								<h5 className=" px-3 mx-1">
 									<Link to={"/events"} style={{ textDecoration: "none" }}>
 										{item.title}
 									</Link>
 								</h5>
+								<h5 className="px-3">
+									<Link to="/meetup" style={{ textDecoration: "none" }}>
+										{store.meetups[1].name}
+									</Link>
+								</h5>
 
-								{store.meetups.map((item, index) => {
-									<h5 key={index}
-										className="list-group-item">
-										<Link to="/meetup" style={{ textDecoration: "none" }}>
-											{item.name}
-										</Link>
-									</h5>
-								})}
-								
+
 							</div>
 						</div>
 					</div>

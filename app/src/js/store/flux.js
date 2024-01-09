@@ -3,7 +3,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			events: [
 				{
-					ID: 2,
+					ID: 4,
 					title: "Charla Anual de Ortodoncia",
 					content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla vehicula luctus. Maecenas vehicula nisl velit, ac iaculis lacus venenatis id. Duis eleifend ac justo a ultricies. Praesent feugiat ligula.",
 					day: "Enero 28",
@@ -12,7 +12,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 				},
 				{
-					ID: 4,
+					ID: 2,
 					title: "Estética facial",
 					content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat ultrices tempor. Curabitur id nunc risus. Duis sapien turpis, vehicula sed massa in, hendrerit commodo arcu. In est sem, ullamcorper venenatis scelerisque consequat, dapibus a",
 					day: "Enero 10",
@@ -21,7 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 				},
 				{
-					ID: 6,
+					ID: 1,
 					title: "Junta Local de fútbol",
 					content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat ultrices tempor. Curabitur id nunc risus. Duis sapien turpis, vehicula sed massa in, hendrerit commodo arcu. In est sem, ullamcorper venenatis scelerisque consequat, dapibus a",
 					day: "Enero 8",
@@ -29,7 +29,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					meetup: "2",
 				},
 				{
-					ID: 8,
+					ID: 3,
 					title: "Influencia del fútbol en la juventud",
 					content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat ultrices tempor. Curabitur id nunc risus. Duis sapien turpis, vehicula sed massa in, hendrerit commodo arcu. In est sem, ullamcorper venenatis scelerisque consequat, dapibus a",
 					day: "Enero 12",
@@ -37,7 +37,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					meetup: "2",
 				},
 				{
-					ID: 10,
+					ID: 5,
 					title: "Conversatorio regional",
 					content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat ultrices tempor. Curabitur id nunc risus. Duis sapien turpis, vehicula sed massa in, hendrerit commodo arcu. In est sem, ullamcorper venenatis scelerisque consequat, dapibus a",
 					day: "Febrero 2",
@@ -45,7 +45,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					meetup: "3",
 				},
 				{
-					ID: 12,
+					ID: 6,
 					title: "Proyectos varios",
 					content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat ultrices tempor. Curabitur id nunc risus. Duis sapien turpis, vehicula sed massa in, hendrerit commodo arcu. In est sem, ullamcorper venenatis scelerisque consequat, dapibus a",
 					day: "Febrero 17",
@@ -72,6 +72,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			],
 			prueba:"rojo",
+			Demo: "King"
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
