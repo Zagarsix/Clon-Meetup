@@ -10,13 +10,13 @@ export const Navbar = () => {
 		<div className="container-fluid d-flex justify-content-between" style={{ backgroundColor: "rgb(66,66,66)" }}
 			fixed="top"
 			expand="lg"	>
-			<div className="container-fluid logo py-2">
+			<div className="container-fluid logo">
 				<Link className="navbar-brand" to="/">
-					<img src={logo} alt="logo-4Geeks" width={250} height={150}></img>
+					<img src={logo} alt="logo-4Geeks" width={150} height={80}></img>
 				</Link>
 			</div>
 
-			<div className="button py-3 m-2">
+			<div className="button py-1 m-2">
 				{/* <!-- Button trigger modal --> */}
 				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
 					Login
