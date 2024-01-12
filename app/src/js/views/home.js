@@ -9,7 +9,7 @@ export const Home = () => {
 
 	const getMeetup = (id) => {
 		let organizador = store.meetups.filter(meet => id == meet.ID)
-		return organizador[0].name
+		return organizador[0]
 	}
 
 
@@ -21,7 +21,7 @@ export const Home = () => {
 				</main>
 			</div>
 
-			{store.events.map((item, index) => {
+			{store.events.map((item, index,ID) => {
 				return (
 					<div className="container d-flex justify-content-between py-1 mt-2">
 						<div className="list-group-item">
@@ -38,8 +38,8 @@ export const Home = () => {
 									</Link>
 								</h5>
 								<h5 className="px-3">
-									<Link to="/meetup/" style={{ textDecoration: "none" }}>
-										{getMeetup(item.meetup)}
+									<Link to={"/meetup/"+ getMeetup(item.meetup).ID} style={{ textDecoration: "none" }}>
+										{getMeetup(item.meetup).name}
 									</Link>
 								</h5>
 							</div>

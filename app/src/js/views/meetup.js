@@ -6,17 +6,12 @@ import { Context } from "../store/appContext";
 export const Meetup = props => {
 	const { store, actions } = useContext(Context);
 	const params = useParams();
+
+	let organizador = store.meetups.filter(meet => params.theid == meet.ID)
+
 	return (
 		<div className="jumbotron">
-			<h1 className="display-4">This will show{store.events[params.theid].title}</h1>
-
-			<hr className="my-4" />
-
-			<Link to="/">
-				<span className="btn btn-primary btn-lg" href="#" role="button">
-					Back home
-				</span>
-			</Link>
+			<h1 className="display-4">{organizador[0].name}</h1>	
 		</div>
 	);
 };
