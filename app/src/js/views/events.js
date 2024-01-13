@@ -6,12 +6,12 @@ import "../../styles/index.css";
 
 export const Events = () => {
 	const { store, actions } = useContext(Context);
-	const { index } = useParams();
+	const { index } = useParams(); //función que usa la URL y según la variable que le indico (index), me trae el valor del elemento que requiero.
 
 	const getMeetup = (id) => {
 
 		let organizador = store.meetups.filter(meet => id == meet.ID)
-		return organizador[0].name
+		return organizador[0]
 	}
 
 	return (
@@ -22,8 +22,8 @@ export const Events = () => {
 
 
 				<h5 className="list-group-item d-flex justify-content-between">
-					<Link to={"/meetup/"}>
-						{getMeetup(store.events[index]?.meetup)}
+					<Link to={"/meetup/" + (store.events[index]?.meetup)}>
+						{getMeetup(store.events[index]?.meetup).name}
 					</Link>
 				</h5>
 

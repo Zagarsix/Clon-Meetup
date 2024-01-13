@@ -12,6 +12,9 @@ export const Home = () => {
 		return organizador[0]
 	}
 
+	// const ordenCronologico =() =>{
+		
+	// }
 
 	return (
 		<>
@@ -20,8 +23,9 @@ export const Home = () => {
 					<h1 style={{ fontSize: "70px" }}>The Meetup Clone</h1>
 				</main>
 			</div>
-
-			{store.events.map((item, index,ID) => {
+ 
+			{store.events.map((item, index) => {
+				//item representa cada elemento del array. Index indica la posición de cada elemento.
 				return (
 					<div className="container d-flex justify-content-between py-1 mt-2">
 						<div className="list-group-item">
