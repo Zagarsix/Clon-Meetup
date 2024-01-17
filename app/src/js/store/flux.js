@@ -51,7 +51,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 					day: "Febrero 17",
 					time: "09:00 am",
 					meetup: "3",
-				},				
+				},		
+				{
+					ID: 7,
+					title: "Proyecto arma-X",
+					content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat ultrices tempor. Curabitur id nunc risus. Duis sapien turpis, vehicula sed massa in, hendrerit commodo arcu. In est sem, ullamcorper venenatis scelerisque consequat, dapibus a",
+					day: "Febrero 28",
+					time: "09:00 am",
+					meetup: "3",
+				},						
 			],
 			meetups: [
 				{
