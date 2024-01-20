@@ -59,6 +59,8 @@ footer {
   width: 80%;
 }
 
+
+/* Event styles */
 .card {
   width: 450px;
   height: 250px;
@@ -79,6 +81,7 @@ footer {
   display: inline-flex;
 }
 
+/* Meetup styles*/
 .cardMeetup {
   width: 700px;
   height: 500px;
