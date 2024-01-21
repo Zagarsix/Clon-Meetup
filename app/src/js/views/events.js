@@ -28,20 +28,20 @@ export const Events = () => {
 						</Link>
 					</h5>
 				</main>
-				<div class="card p-4 m-4">
+				<div class="card p-2">
 					<card className="PeopleGoing p-3 my-3 justify-content-center">
-						<img img="" imgLabel="peoplegoing" title="people going" description="people who will attend the event"/>
+						<img src="" img="" imgLabel="peoplegoing" title="people going" description="people who will attend the event"/>
 					</card>
 				</div>
 			</div>
 			<section>
 				<div className="detailsEvent">
-					<div className="row justify-content-between align-items-center">
+					<div className="row justify-content-between align-items-start">
 						<div className="cardEvent col-md-6">
-							<img img="" imgLabel="" title="" description="photo of event"/>
+							<img src="" img="" imgLabel="" title="" description="photo of event"/>
 
 						</div>
-						<div className="col-md-3" style={{ backgroundColor: "pink" }}>
+						<div className="resumeEvent col-md-2 mt-4">
 							<card>
 								<p>{store.events[index]?.day}</p>
 								<p>{store.events[index]?.time}</p>
@@ -49,12 +49,13 @@ export const Events = () => {
 							</card>
 						</div>
 					</div>
-					<article className="details mx-50">
+					<article className="details">
 						<h3>Detalles</h3>
 						<p>
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas beatae maxime maiores laudantium a
 							ut. Asperiores perferendis saepe sit quo.
 						</p>
+						<p>{store.events[index]?.content}</p>
 					</article>
 				</div>
 			</section>
