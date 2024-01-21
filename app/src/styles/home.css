@@ -67,18 +67,19 @@ footer {
   background-color: rgb(121, 121, 121);
 }
 
-.photoEvent {
-  display: inline-block;
-  width: auto;
-}
-
 .cardEvent {
   width: 800px;
   height: 500px;
   background-color: rgb(156, 156, 156);
-  margin: 20px;
+  margin-top: 20px;
   margin-left: 100px;
   display: inline-flex;
+}
+
+.details{
+  margin-left: 100px;
+  width: 800px;
+  
 }
 
 /* Meetup styles*/
