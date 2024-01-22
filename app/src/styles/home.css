@@ -94,5 +94,10 @@ footer {
   width: 700px;
   height: 500px;
   background-color: rgb(156, 156, 156);
-  margin-left: 80px;
+  margin: 40px 0 50px 80px;
+}
+
+.nameMeetup{
+  margin: 40px 500px 0 0;
+  width: 500px;
 }

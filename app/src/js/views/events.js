@@ -16,9 +16,7 @@ export const Events = () => {
 
 	return (
 		<>
-			<div className="tittle-events d-flex justify-content-between" style={{
-				backgroundColor: "rgb(66,66,66)",
-				color: "white"}}>
+			<div className="tittle-events d-flex justify-content-between" style={{ backgroundColor: "rgb(66,66,66)", color: "white" }}>
 				<main className="main-section w-100 h-100 p-5">
 					<span>{store.events[index]?.day}</span>
 					<h1>{store.events[index]?.title}</h1>
@@ -30,7 +28,7 @@ export const Events = () => {
 				</main>
 				<div class="card p-2">
 					<card className="PeopleGoing p-3 my-3 justify-content-center">
-						<img src="" img="" imgLabel="peoplegoing" title="people going" description="people who will attend the event"/>
+						<img src="" img="" imgLabel="peoplegoing" title="people going" description="people who will attend the event" />
 					</card>
 				</div>
 			</div>
@@ -38,11 +36,12 @@ export const Events = () => {
 				<div className="detailsEvent">
 					<div className="row justify-content-between align-items-start">
 						<div className="cardEvent col-md-6">
-							<img src="" img="" imgLabel="" title="" description="photo of event"/>
+							<img src="" img="" imgLabel="" title="" description="photo of event" />
 
 						</div>
 						<div className="resumeEvent col-md-2 mt-4">
 							<card>
+								<i className="fa fa-clock fa-2x m-2" aria-hidden="true"></i>
 								<p>{store.events[index]?.day}</p>
 								<p>{store.events[index]?.time}</p>
 								<p>{store.events[index]?.content}</p>
