@@ -1,10 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { Context } from "../store/appContext";
 import logo from "../../img/Meetup-logo.png";
-import { useState } from "react";
 
 export const Navbar = () => {
+
+	const { store, actions } = useContext(Context);
+	const navigate = useNavigate();
 	const [showPassword, setShowPassword] = useState(false);
+
+	useEffect(() => { }, []);
+
+	// If user signed in, redirect to home page
+	useEffect(() => {
+		if (store.currentUser !== null) navigate("/profile");
+	}, [store.currentUser]);
+
 	return (
 
 		<div className="container-fluid d-flex justify-content-between" style={{ backgroundColor: "rgb(66,66,66)" }}
@@ -18,21 +30,21 @@ export const Navbar = () => {
 
 			<div className="button py-1 m-2">
 				{/* <!-- Button trigger modal --> */}
-				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
 					Login
 				</button>
 
 				{/* <!-- Modal --> */}
-				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h1 class="modal-title fs-5" id="exampleModalLabel">Login</h1>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				<div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div className="modal-dialog">
+						<div className="modal-content" onSubmit={(e) => actions.handleLogin(e, navigate)}>
+							<div className="modal-header">
+								<h1 className="modal-title fs-5" id="exampleModalLabel">Login</h1>
+								<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
-							<div class="modal-body">
-								<div class="d-flex col-md-6">
-									<input type="text" class="form-control" id="Username" placeholder="Username">
+							<div className="modal-body">
+								<div className="d-flex col-md-6">
+									<input type="text" className="form-control" id="Username" placeholder="Username">
 									</input>
 								</div>
 								<div Class="d-flex col-md-6">

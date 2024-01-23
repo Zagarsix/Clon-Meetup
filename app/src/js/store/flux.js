@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -10,7 +12,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					time: "07:00 am",
 					location: "Las Condes, Santiago",
 					meetup: "1",
-					
+
 				},
 				{
 					ID: 2,
@@ -20,7 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					time: "03:00 pm",
 					location: "Miami, Florida",
 					meetup: "1",
-					
+
 				},
 				{
 					ID: 1,
@@ -57,7 +59,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					time: "09:00 am",
 					location: "Almagro, Buenos Aires",
 					meetup: "3",
-				},		
+				},
 				{
 					ID: 7,
 					title: "Proyecto arma-X",
@@ -66,7 +68,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					time: "09:00 am",
 					location: "Westchester, Nueva York",
 					meetup: "3",
-				},						
+				},
 			],
 			meetups: [
 				{
@@ -77,44 +79,58 @@ const getState = ({ getStore, getActions, setStore }) => {
 				{
 					ID: 2,
 					name: "Santa Cruz Team",
-					description:"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit",
+					description: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit",
 				},
 				{
 					ID: 3,
 					name: "Generation of lions",
-					description:"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit",
+					description: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit",
 				},
 
 			],
-			prueba:"rojo",
-			Demo: "King"
+			apiURL: "http://127.0.0.1:5000",
+			name:"",
+			lastname:"",
+			username: "",
+			email:"",
+			password: "",
 		},
+
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const events = store.events.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
+			handleChange: (e) => {
+				const { name, value } = e.target;
+				setStore({
+					[name]: value,
 				});
+			},
+			handleLogin: async (e, navigate) => {
+				e.preventDefault();
 
-				//reset the global store
-				setStore({ events: events });
+				// // Use getActions to call a function within a fuction
+				// exampleFunction: () => {
+				// 	getActions().changeColor(0, "green");
+				// },
+				// 	loadSomeData: () => {
+				// 		/**
+				// 			fetch().then().then(data => setStore({ "foo": data.bar }))
+				// 		*/
+				// 	},
+				// 		changeColor: (index, color) => {
+				// 			//get the store
+				// 			const store = getStore();
+
+				// 			//we have to loop the entire demo array to look for the respective index
+				// 			//and change its color
+				// 			const events = store.events.map((elm, i) => {
+				// 				if (i === index) elm.background = color;
+				// 				return elm;
+				// 			});
+
+							//reset the global store
+							setStore({ events: events });
+						}
 			}
-		}
+		};
 	};
-};
 
-export default getState;
+	export default getState;
