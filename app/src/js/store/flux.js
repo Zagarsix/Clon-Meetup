@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -89,10 +91,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			],
 			apiURL: "http://127.0.0.1:5000",
-			name:"",
-			lastname:"",
+			name: "",
+			lastname: "",
 			username: "",
-			email:"",
+			email: "",
 			password: "",
 		},
 
@@ -106,31 +108,84 @@ const getState = ({ getStore, getActions, setStore }) => {
 			handleLogin: async (e, navigate) => {
 				e.preventDefault();
 
-				// // Use getActions to call a function within a fuction
-				// exampleFunction: () => {
-				// 	getActions().changeColor(0, "green");
-				// },
-				// 	loadSomeData: () => {
-				// 		/**
-				// 			fetch().then().then(data => setStore({ "foo": data.bar }))
-				// 		*/
-				// 	},
-				// 		changeColor: (index, color) => {
-				// 			//get the store
-				// 			const store = getStore();
+				const { apiURL, email, password } = getStore();
 
-				// 			//we have to loop the entire demo array to look for the respective index
-				// 			//and change its color
-				// 			const events = store.events.map((elm, i) => {
-				// 				if (i === index) elm.background = color;
-				// 				return elm;
-				// 			});
+				const fields = {
+					email: email,
+					password: password,
+				};
 
-							//reset the global store
-							setStore({ events: events });
-						}
-			}
-		};
-	};
+				// Fetching data from API
+				const response = await fetch(`${apiURL}/api/login`, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(fields),
+				});
 
-	export default getState;
+				const { status, message, data } = await response.json();
+
+				console.log(data);
+
+				// Display a certain notification based on status of the fetch data
+				if (status === "failed") {
+					toast.error(message);
+				}
+				if (status === "success") {
+					Swal.fire({
+						icon: "success",
+						title: message,
+						showConfirmButton: false,
+						timer: 1500,
+					});
+
+					// Saving user data on session storage
+					sessionStorage.setItem("currentUser", JSON.stringify(data));
+
+					setStore({
+						currentUser: data,
+						// clear data if user sign out
+						email: "",
+						password: "",
+					});
+
+					navigate("/profile");
+				}
+			},
+
+
+
+
+
+
+
+
+			// // Use getActions to call a function within a fuction
+			// exampleFunction: () => {
+			// 	getActions().changeColor(0, "green");
+			// },
+			// 	loadSomeData: () => {
+			// 		/**
+			// 			fetch().then().then(data => setStore({ "foo": data.bar }))
+			// 		*/
+			// 	},
+			// 		changeColor: (index, color) => {
+			// 			//get the store
+			// 			const store = getStore();
+
+			// 			//we have to loop the entire demo array to look for the respective index
+			// 			//and change its color
+			// 			const events = store.events.map((elm, i) => {
+			// 				if (i === index) elm.background = color;
+			// 				return elm;
+			// 			});
+
+			//reset the global store
+			// setStore({ events: events });
+		}
+	}
+};
+
+
+export default getState;

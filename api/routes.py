@@ -24,8 +24,16 @@ def register():
     #le decimos que agregue a la base de datos la variable:
     db.session.add(user)
     db.session.commit()
-    
+
     print (body)
     return jsonify(body)
+
+@api.route("/users", methods=["GET"])
+def users():
+    users = User.query.all() #Para solicitar todos los usuarios
+    serialize = list(map(lambda user: user.serialize(), users))
+    print(users)
+    return jsonify(serialize)
+
 
 

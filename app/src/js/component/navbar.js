@@ -44,12 +44,26 @@ export const Navbar = () => {
 							</div>
 							<div className="modal-body">
 								<div className="d-flex col-md-6">
-									<input type="text" className="form-control" id="Username" placeholder="Username">
-									</input>
+									<input
+										type="text"
+										className="form-control"
+										id="Username"
+										name="username"
+										placeholder="Username"
+										value={store.username}
+										onChange={actions.handleChange}
+									/>
 								</div>
 								<div Class="d-flex col-md-6">
-									<input type="text" Class="form-control" id="Password" placeholder="Password">
-									</input>
+									<input
+										type="password"
+										className="form-control"
+										id="password"
+										name="password"
+										placeholder="Password"
+										value={store.password}
+										onChange={actions.handleChange}
+									/>
 									<span id="icon-eye">
 										<i className="fa fa-eye" aria-hidden="true"></i>
 									</span>
