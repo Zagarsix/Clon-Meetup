@@ -46,7 +46,7 @@ class Event (db.Model):
     content = Column(String(255))
     day = Column(String(100), nullable=False)
     time = Column(String(100), nullable=False)
-    Meetups = Column(String(100), unique=True, nullable=False)
+    meetups = Column(String(100), unique=True, nullable=False)
     image = Column(String(255))
 
     def serialize(self):
