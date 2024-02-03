@@ -31,14 +31,14 @@ export const Navbar = () => {
 			<div className="button py-1 m-2">
 				{/* <!-- Button trigger modal --> */}
 				<div className="d-flex">
-				<button type="button" className="btn btn-primary px-2 mx-2" data-bs-toggle="modal" data-bs-target="#button-register">
-					Register
-				</button>
-				<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#button-login">
-					Login
-				</button>
+					<button type="button" className="btn btn-primary px-2 mx-2" data-bs-toggle="modal" data-bs-target="#button-register">
+						Register
+					</button>
+					<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#button-login">
+						Login
+					</button>
 				</div>
-				{/* <!-- Modal --> */}
+				{/* <!-- Modal Login --> */}
 				<div className="modal fade" id="button-login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div className="modal-dialog">
 						<div className="modal-content" onSubmit={(e) => actions.handleLogin(e, navigate)}>
@@ -51,10 +51,10 @@ export const Navbar = () => {
 									<input
 										type="text"
 										className="form-control"
-										id="Username"
-										name="username"
-										placeholder="Username"
-										value={store.events.username}
+										id="email"
+										name="email"
+										placeholder="email"
+										value={store.events.email}
 										onChange={actions.handleChange}
 									/>
 								</div>
@@ -76,6 +76,81 @@ export const Navbar = () => {
 							</div>
 							<div className="modal-footer justify-content-start">
 								<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Login</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				{/* <!-- Modal Register--> */}
+				<div className="modal fade" id="button-register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div className="modal-dialog">
+						<div className="modal-content" onSubmit={(e) => actions.handleLogin(e, navigate)}>
+							<div className="modal-header">
+								<h1 className="modal-title fs-5" id="exampleModalLabel">Register</h1>
+								<button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div className="modal-body">
+								<div className="d-flex col-md-6">
+									<input
+										type="text"
+										className="form-control"
+										id="name"
+										name="name"
+										placeholder="name"
+										value={store.events.name}
+										onChange={actions.handleChange}
+									/>
+								</div>
+								<div className="d-flex col-md-6">
+									<input
+										type="text"
+										className="form-control"
+										id="lastname"
+										name="lastname"
+										placeholder="lastname"
+										value={store.events.lastname}
+										onChange={actions.handleChange}
+									/>
+								</div>
+								<div className="d-flex col-md-6">
+									<input
+										type="text"
+										className="form-control"
+										id="username"
+										name="username"
+										placeholder="username"
+										value={store.events.username}
+										onChange={actions.handleChange}
+									/>
+								</div>
+								<div className="d-flex col-md-6">
+									<input
+										type="text"
+										className="form-control"
+										id="email"
+										name="email"
+										placeholder="email"
+										value={store.events.email}
+										onChange={actions.handleChange}
+									/>
+								</div>
+								<div Class="d-flex col-md-6">
+									<input
+										type="password"
+										className="form-control"
+										id="password"
+										name="password"
+										placeholder="Password"
+										value={store.password}
+										onChange={actions.handleChange}
+									/>
+									<span id="icon-eye">
+										<i className="fa fa-eye" aria-hidden="true"></i>
+									</span>
+								</div>
+
+							</div>
+							<div className="modal-footer justify-content-start">
+								<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Register now</button>
 							</div>
 						</div>
 					</div>
