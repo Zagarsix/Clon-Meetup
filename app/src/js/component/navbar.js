@@ -30,12 +30,16 @@ export const Navbar = () => {
 
 			<div className="button py-1 m-2">
 				{/* <!-- Button trigger modal --> */}
-				<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				<div className="d-flex">
+				<button type="button" className="btn btn-primary px-2 mx-2" data-bs-toggle="modal" data-bs-target="#button-register">
+					Register
+				</button>
+				<button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#button-login">
 					Login
 				</button>
-
+				</div>
 				{/* <!-- Modal --> */}
-				<div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div className="modal fade" id="button-login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div className="modal-dialog">
 						<div className="modal-content" onSubmit={(e) => actions.handleLogin(e, navigate)}>
 							<div className="modal-header">
@@ -50,7 +54,7 @@ export const Navbar = () => {
 										id="Username"
 										name="username"
 										placeholder="Username"
-										value={store.username}
+										value={store.events.username}
 										onChange={actions.handleChange}
 									/>
 								</div>

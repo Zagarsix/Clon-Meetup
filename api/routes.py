@@ -10,7 +10,7 @@ api= Blueprint("api",__name__,url_prefix="/api")
 # Por defecto viene con el método GET
 @api.route("/") 
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return "<p>{Clon de Meetup: Proyecto funcionando!}</p>"
 
 ## REGISTRO DE USUARIOS
 @api.route("/register", methods=["POST"])
@@ -62,25 +62,22 @@ def login():
 
         if body["email"] == "" or body["password"] == "":
             return "Este campo es obligatorio"
-        #instanciar una clase (crea un nuevo objeto):
-        user = User()
-        user.email = body["email"]
-        user.password = body["password"]
+       
         #le decimos que agregue a la base de datos la variable:
 
-        userExists = User.query.filter_by(email = email).first()
+        userExists = User.query.filter_by(email = body["email"], password = body["password"]).first()
 
         if not userExists:
             return "Email y/o contraseña incorrecta"
-        
-        db.session.add(user)
-        db.session.commit()
 
         print (body)
-        return jsonify(body)
+        return jsonify("Inicio de sesión exitoso!")
 
     except Exception as error:
+        print (error)
         return "Ha ocurrido un error en la base de datos"    
+
+     
     
 
 ## PARA AGREGAR EVENTOS
