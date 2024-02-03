@@ -3,6 +3,7 @@ from flask import request
 from flask import jsonify
 from models import User
 from models import Event
+from models import Meetup
 from models import db
 
 api= Blueprint("api",__name__,url_prefix="/api")
@@ -37,10 +38,10 @@ def register():
         db.session.commit()
 
         print (body)
-        return jsonify(body)
+        return jsonify("Registrado exitosamente!")
     except Exception as error:
         print(error)
-        return "Ha ocurrido un error en la base de datos"
+        return "Ha ocurrido un error al registrarse!"
 
 ## ME MUESTRA TODOS LOS USUARIOS DE MI BASE DE DATOS
 @api.route("/users", methods=["GET"])
@@ -106,7 +107,7 @@ def create_events():
         db.session.commit()
 
         print (body)
-        return jsonify(body)
+        return jsonify("Excelente! Tu evento ha sido creado!")
 
     except Exception as error:
         print(error)
@@ -144,7 +145,7 @@ def create_meetups():
         db.session.commit()
 
         print (body)
-        return jsonify(body)
+        return jsonify("Tu meetup ha sido creado exitosamente!")
 
     except Exception as error:
         print(error)
