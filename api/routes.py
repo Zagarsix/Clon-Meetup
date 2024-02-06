@@ -1,6 +1,7 @@
 from flask import Blueprint
 from flask import request
 from flask import jsonify
+import datetime
 
 from models import User
 from models import Event
@@ -15,8 +16,8 @@ api= Blueprint("api",__name__,url_prefix="/api")
 
 # Por defecto viene con el método GET
 @api.route("/") 
-def hello_world():
-    return "<p>{Clon de Meetup: Proyecto funcionando!}</p>"
+def root():
+    return jsonify ({"msg": "Welcome to my Clon of Meetup"}), 200
 
 ## REGISTRO DE USUARIOS
 @api.route("/register", methods=["POST"])
@@ -29,8 +30,13 @@ def register():
 
         # si alguno de estos campos está vacío
         if body["name"] == "" or body["lastname"] == "" or body["username"] == "" or body["email"] == "" or body["password"] == "":
-            return "Este campo es obligatorio"
+            return jsonify({"msg":"Este campo es obligatorio"}), 400
         
+        # si el usuario ya existe:
+        userFound = User.query.filter_by(email=body["email"]).first()
+        if userFound:
+            return jsonify({"msg":"El usuario ya existe"}), 400 
+
         #instanciar una clase (crea un nuevo objeto):
         user = User()
         user.name = body["name"]
@@ -43,7 +49,8 @@ def register():
         db.session.commit()
 
         print (body)
-        return jsonify("Registrado exitosamente!")
+        return jsonify({"msg":"Registrado exitosamente!"}), 200
+
     except Exception as error:
         print(error)
         return "Ha ocurrido un error al registrarse!"
@@ -67,26 +74,34 @@ def login():
             return "Ha ocurrido un error"
 
         if body["email"] == "" or body["password"] == "":
-            return "Este campo es obligatorio"
+            return jsonify({"msg":"Este campo es obligatorio"}), 400 
        
-        #le decimos que agregue a la base de datos la variable:
-
+        #chequea si el usuario existe. Lo filtra a través del email y el password (deben coincidir)
         userExists = User.query.filter_by(email = body["email"], password = body["password"]).first()
 
+        # si el usuario no existe, o ingresa mal alguno de los campos
         if not userExists:
             return jsonify({"msg":"Email y/o contraseña incorrecta"}), 401
 
-        token = create_access_token(identity=userExists.id)
+        # Fecha de exporación del token
+        expires = datetime.timedelta(days=1)
+
+        # Creación del token de acceso
+        token = create_access_token(identity=userExists.id, expires_delta= expires)
+        
+        data = {
+            "token": token,
+            "user": userExists.serialize()
+        }
+
         print (body)
-        return jsonify({"msg":"Inicio de sesión exitoso!","token":token})
+        return jsonify({"msg":"Inicio de sesión exitoso!","data": data}), 200
 
     except Exception as error:
         print (error)
         return "Ha ocurrido un error en la base de datos"    
 
      
-    
-
 ## PARA AGREGAR EVENTOS
 @api.route("/create_events", methods=["POST"])
 def create_events():
@@ -99,7 +114,7 @@ def create_events():
 
         # si alguno de estos campos está vacío
         if body["tittle"] == "" or body["content"] == "" or body["day"] == "" or body["time"] == "" or body["meetups"] == "":
-            return "Este campo es obligatorio"
+            return jsonify({"msg":"Este campo es obligatorio"}), 400
 
         event = Event()
         event.tittle = body["tittle"]
@@ -113,7 +128,7 @@ def create_events():
         db.session.commit()
 
         print (body)
-        return jsonify("Excelente! Tu evento ha sido creado!")
+        return jsonify({"msg":"Excelente! Tu evento ha sido creado!","data": data}), 200
 
     except Exception as error:
         print(error)
@@ -140,7 +155,7 @@ def create_meetups():
 
         # si alguno de estos campos está vacío
         if body["name"] == "" or body["description"] == "":
-            return "Este campo es obligatorio"
+            return jsonify({"msg":"Este campo es obligatorio"}), 400
 
         meetup = Meetup()
         meetup.name = body["name"]
@@ -151,11 +166,11 @@ def create_meetups():
         db.session.commit()
 
         print (body)
-        return jsonify("Tu meetup ha sido creado exitosamente!")
+        return jsonify({"msg":"Tu meetup ha sido creado exitosamente!","data": data}), 200
 
     except Exception as error:
         print(error)
-        return "Ha ocurrido un error para crear el Meetup"
+        return "Ha ocurrido un error al crear el Meetup"
 
 # ME MUESTRA TODOS LOS MEETUPS DE MI BD
 @api.route("/meetups", methods=["GET"])
