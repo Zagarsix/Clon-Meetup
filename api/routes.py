@@ -1,10 +1,15 @@
 from flask import Blueprint
 from flask import request
 from flask import jsonify
+
 from models import User
 from models import Event
 from models import Meetup
 from models import db
+
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
 
 api= Blueprint("api",__name__,url_prefix="/api")
 
@@ -69,10 +74,11 @@ def login():
         userExists = User.query.filter_by(email = body["email"], password = body["password"]).first()
 
         if not userExists:
-            return "Email y/o contraseña incorrecta"
+            return jsonify({"msg":"Email y/o contraseña incorrecta"}), 401
 
+        token = create_access_token(identity=userExists.id)
         print (body)
-        return jsonify("Inicio de sesión exitoso!")
+        return jsonify({"msg":"Inicio de sesión exitoso!","token":token})
 
     except Exception as error:
         print (error)
