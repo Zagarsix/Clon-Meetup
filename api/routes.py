@@ -83,7 +83,7 @@ def login():
         if not userExists:
             return jsonify({"msg":"Email y/o contraseña incorrecta"}), 401
 
-        # Fecha de exporación del token
+        # Fecha de expiración del token
         expires = datetime.timedelta(days=1)
 
         # Creación del token de acceso
@@ -101,7 +101,20 @@ def login():
         print (error)
         return "Ha ocurrido un error en la base de datos"    
 
-     
+
+# RUTA PRIVADA
+@api.route("/profile", methods=["GET"])
+@jwt_required()
+def profile():
+    id= get_jwt_identity()
+    user= User.query.get(id)
+
+    data = {
+        "user": user.serialize()
+    }
+    return jsonify({"msg":"Acceso correcto", "data":data}), 200
+
+
 ## PARA AGREGAR EVENTOS
 @api.route("/create_events", methods=["POST"])
 def create_events():
@@ -179,5 +192,4 @@ def meetups():
     serialize = list(map(lambda meetup: meetup.serialize(), meetups))
     print(meetups)
     return jsonify(serialize)
-
 
