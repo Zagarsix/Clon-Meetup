@@ -39,26 +39,22 @@ class User (db.Model):
         db.session.delete(self)
         db.session.commit()
 
-class Event (db.Model):
-    __tablename__="events"
+class Meetup (db.Model):
+    __tablename__="meetups"
     id = Column(Integer, primary_key=True)
-    tittle = Column(String(100), nullable=False)
-    content = Column(String(255))
-    day = Column(String(100), nullable=False)
-    time = Column(String(100), nullable=False)
-    meetups = Column(String(100), unique=True, nullable=False)
+    name = Column(String(100), unique=True, nullable=False)
+    description = Column(String(255))
     image = Column(String(255))
+    events = relationship("Event")
+
 
     def serialize(self):
-        return {
+        return{
             'id': self.id,
-            'tittle': self.tittle,
-            'content': self.content,
-            'day': self.day,
-            'time': self.time,
-            'meetups': self.meetups,
+            'name': self.name,
+            'description': self.description,
             'image': self.image,
-        }
+        } 
 
     def save(self):
         db.session.add(self)
@@ -71,20 +67,28 @@ class Event (db.Model):
         db.session.delete(self)
         db.session.commit()
 
-class Meetup (db.Model):
-    __tablename__="meetups"
+class Event (db.Model):
+    __tablename__="events"
     id = Column(Integer, primary_key=True)
-    name = Column(String(100), unique=True, nullable=False)
-    description = Column(String(255))
+    tittle = Column(String(100), nullable=False)
+    content = Column(String(255))
+    day = Column(String(100), nullable=False)
+    time = Column(String(100), nullable=False)
+    meetups = Column(String(100), unique=True, nullable=False)
     image = Column(String(255))
+    meetups_id = Column(Integer, ForeignKey("meetups.id"))
+    meetups = relationship("Meetup")
 
     def serialize(self):
-        return{
+        return {
             'id': self.id,
-            'name': self.name,
-            'description': self.description,
+            'tittle': self.tittle,
+            'content': self.content,
+            'day': self.day,
+            'time': self.time,
+            'meetups': self.meetups,
             'image': self.image,
-        } 
+        }
 
     def save(self):
         db.session.add(self)

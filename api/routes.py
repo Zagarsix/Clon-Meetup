@@ -155,6 +155,17 @@ def events():
     print(events)
     return jsonify(serialize)
    
+# RUTA PRIVADA EVENTOS
+@api.route("/private_events", methods=["GET"])
+@jwt_required()
+def private_events():
+    id= get_jwt_identity()
+    user= User.query.get(id)
+
+    data = {
+        "user": user.serialize()
+    }
+    return jsonify({"msg":"Tus eventos", "data":data}), 200
 
 ## PARA AGREGAR MEETUPS
 @api.route("/create_meetups", methods=["POST"])
@@ -193,3 +204,14 @@ def meetups():
     print(meetups)
     return jsonify(serialize)
 
+# RUTA PRIVADA MEETUPS
+@api.route("/private_meetups", methods=["GET"])
+@jwt_required()
+def private_meetups():
+    id= get_jwt_identity()
+    user= User.query.get(id)
+
+    data = {
+        "user": user.serialize()
+    }
+    return jsonify({"msg":"Tu meetup", "data":data}), 200
