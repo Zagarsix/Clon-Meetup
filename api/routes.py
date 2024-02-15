@@ -128,20 +128,19 @@ def create_events():
         # si alguno de estos campos está vacío
         if body["tittle"] == "" or body["content"] == "" or body["day"] == "" or body["time"] == "" or body["meetups"] == "":
             return jsonify({"msg":"Este campo es obligatorio"}), 400
-
+            
         event = Event()
         event.tittle = body["tittle"]
         event.content = body["content"]
         event.day = body["day"]
         event.time = body["time"]
-        event.meetups = body["meetups"]
+        event.meetups_id = body["meetups"]
         event.image = body["image"]
 
         db.session.add(event)
         db.session.commit()
 
-        print (body)
-        return jsonify({"msg":"Excelente! Tu evento ha sido creado!","data": data}), 200
+        return jsonify({"msg":"Excelente! Tu evento ha sido creado!"}), 200
 
     except Exception as error:
         print(error)

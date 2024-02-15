@@ -18,7 +18,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				},
 				{
 					ID: 2,
-					title: "Estética facial",
+					tittle: "Estética facial",
 					content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed feugiat ultrices tempor. Curabitur id nunc risus. Duis sapien turpis, vehicula sed massa in, hendrerit commodo arcu. In est sem, ullamcorper venenatis scelerisque consequat, dapibus a",
 					day: "Enero 10",
 					time: "03:00 pm",

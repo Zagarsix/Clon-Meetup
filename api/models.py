@@ -74,7 +74,6 @@ class Event (db.Model):
     content = Column(String(255))
     day = Column(String(100), nullable=False)
     time = Column(String(100), nullable=False)
-    meetups = Column(String(100), unique=True, nullable=False)
     image = Column(String(255))
     meetups_id = Column(Integer, ForeignKey("meetups.id"))
     meetups = relationship("Meetup")
@@ -86,7 +85,7 @@ class Event (db.Model):
             'content': self.content,
             'day': self.day,
             'time': self.time,
-            'meetups': self.meetups,
+            'meetups_id': self.meetups_id,
             'image': self.image,
         }
 
