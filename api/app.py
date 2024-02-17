@@ -4,6 +4,7 @@ from models import db
 from flask_migrate import Migrate
 
 from flask_jwt_extended import JWTManager
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
 app.register_blueprint(api)
@@ -11,6 +12,7 @@ app.register_blueprint(api)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 db.init_app(app)
 Migrate(app, db)
+bcrypt = Bcrypt(app)
 
 app.config["JWT_SECRET_KEY"] = "zagarsix117"  # Change this!
 jwt = JWTManager(app)

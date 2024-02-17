@@ -11,6 +11,7 @@ from models import db
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
+from app import bcrypt
 
 api= Blueprint("api",__name__,url_prefix="/api")
 
@@ -43,7 +44,7 @@ def register():
         user.lastname = body["lastname"]
         user.username = body["username"]
         user.email = body["email"]
-        user.password = body["password"]
+        user.password = bcrypt.generate_password_hash(body["password"])
         #le decimos que agregue a la base de datos la variable:
         db.session.add(user)
         db.session.commit()
@@ -77,10 +78,10 @@ def login():
             return jsonify({"msg":"Este campo es obligatorio"}), 400 
        
         #chequea si el usuario existe. Lo filtra a través del email y el password (deben coincidir)
-        userExists = User.query.filter_by(email = body["email"], password = body["password"]).first()
+        userExists = User.query.filter_by(email = body["email"]).first()
 
         # si el usuario no existe, o ingresa mal alguno de los campos
-        if not userExists:
+        if not userExists and bcrypt.check_password_hash(userExists.password, body["password"]):
             return jsonify({"msg":"Email y/o contraseña incorrecta"}), 401
 
         # Fecha de expiración del token
