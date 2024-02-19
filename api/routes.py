@@ -1,17 +1,11 @@
-from flask import Blueprint
-from flask import request
-from flask import jsonify
+from flask import Blueprint, request, jsonify
 import datetime
 
-from models import User
-from models import Event
-from models import Meetup
-from models import db
+from models import User, Event, Meetup, db
 
 from flask_jwt_extended import create_access_token
-from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import jwt_required
-from app import bcrypt
+from flask_jwt_extended import get_jwt_identity, jwt_required
+from flask_bcrypt import generate_password_hash, check_password_hash
 
 api= Blueprint("api",__name__,url_prefix="/api")
 
@@ -50,7 +44,7 @@ def register():
         db.session.commit()
 
         print (body)
-        return jsonify({"msg":"Registrado exitosamente!"}), 200
+        return jsonify({"msg":"Registrado exitosamente!", "data": None}), 200
 
     except Exception as error:
         print(error)
