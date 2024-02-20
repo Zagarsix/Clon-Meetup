@@ -48,7 +48,7 @@ def register():
 
     except Exception as error:
         print(error)
-        return "Ha ocurrido un error al registrarse!"
+        return jsonify({"msg":"Ha ocurrido un error al registrarse!", "data":None}), 200
 
 ## ME MUESTRA TODOS LOS USUARIOS DE MI BASE DE DATOS
 @api.route("/users", methods=["GET"])
@@ -69,14 +69,14 @@ def login():
             return "Ha ocurrido un error"
 
         if body["email"] == "" or body["password"] == "":
-            return jsonify({"msg":"Este campo es obligatorio"}), 400 
+            return jsonify({"msg":"Este campo es obligatorio", "data":None}), 400 
        
         #chequea si el usuario existe. Lo filtra a través del email y el password (deben coincidir)
         userExists = User.query.filter_by(email = body["email"]).first()
 
         # si el usuario no existe, o ingresa mal alguno de los campos
         if not userExists or not check_password_hash(userExists.password, body["password"]):
-            return jsonify({"msg":"Email y/o contraseña incorrecta"}), 401
+            return jsonify({"msg":"Email y/o contraseña incorrecta", "data": None}), 401
         
         # Fecha de expiración del token
         expires = datetime.timedelta(days=1)
@@ -94,7 +94,7 @@ def login():
 
     except Exception as error:
         print (error)
-        return "Ha ocurrido un error en la base de datos"    
+        return jsonify({"msg":"Ha ocurrido un error en la base de datos","data": None}), 200    
 
 
 # RUTA PRIVADA
