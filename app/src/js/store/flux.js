@@ -105,7 +105,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					[name]: value,
 				});
 			},
-			handleLogin: async (e, navigate) => {
+			handleLogin: async (e) => {
 				e.preventDefault();
 
 				const { apiURL, email, password } = getStore();
@@ -149,8 +149,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 						email: "",
 						password: "",
 					});
-
-					navigate("/profile");
 				}
 			},
 

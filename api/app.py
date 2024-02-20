@@ -2,7 +2,7 @@ from flask import Flask
 from routes import api
 from models import db
 from flask_migrate import Migrate
-
+from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_bcrypt import Bcrypt
 
@@ -13,6 +13,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 db.init_app(app)
 Migrate(app, db)
 bcrypt = Bcrypt(app)
+CORS(app)
 
 app.config["JWT_SECRET_KEY"] = "zagarsix117"  # Change this!
 jwt = JWTManager(app)

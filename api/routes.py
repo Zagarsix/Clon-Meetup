@@ -25,12 +25,12 @@ def register():
 
         # si alguno de estos campos está vacío
         if body["name"] == "" or body["lastname"] == "" or body["username"] == "" or body["email"] == "" or body["password"] == "":
-            return jsonify({"msg":"Este campo es obligatorio"}), 400
+            return jsonify({"msg":"Este campo es obligatorio", "data": None}), 400
         
         # si el usuario ya existe:
         userFound = User.query.filter_by(email=body["email"]).first()
         if userFound:
-            return jsonify({"msg":"El usuario ya existe"}), 400 
+            return jsonify({"msg":"El usuario ya existe", "data": None}), 400 
 
         #instanciar una clase (crea un nuevo objeto):
         user = User()
@@ -38,7 +38,7 @@ def register():
         user.lastname = body["lastname"]
         user.username = body["username"]
         user.email = body["email"]
-        user.password = bcrypt.generate_password_hash(body["password"])
+        user.password = generate_password_hash(body["password"])
         #le decimos que agregue a la base de datos la variable:
         db.session.add(user)
         db.session.commit()
@@ -75,9 +75,9 @@ def login():
         userExists = User.query.filter_by(email = body["email"]).first()
 
         # si el usuario no existe, o ingresa mal alguno de los campos
-        if not userExists and bcrypt.check_password_hash(userExists.password, body["password"]):
+        if not userExists or not check_password_hash(userExists.password, body["password"]):
             return jsonify({"msg":"Email y/o contraseña incorrecta"}), 401
-
+        
         # Fecha de expiración del token
         expires = datetime.timedelta(days=1)
 
