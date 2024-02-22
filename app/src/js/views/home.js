@@ -27,7 +27,7 @@ export const Home = () => {
 			{store.events.map((item, index) => {
 				//item representa cada elemento del array. Index indica la posición de cada elemento.
 				return (
-					<div className="container d-flex justify-content-between py-1 mt-2">
+					<div className="container d-flex justify-content-between py-1 mt-2" key={index}>
 						<div className="list-group-item">
 							<div className="dateEvent" style={{background:"rgb(228, 228, 228)", width:"100%"}}>
 								<h1>{item.day}</h1>

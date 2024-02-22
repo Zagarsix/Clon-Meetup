@@ -26,7 +26,7 @@ export const Events = () => {
 						</Link>
 					</h5>
 				</main>
-				<div class="card p-2">
+				<div className="card p-2">
 					<card className="PeopleGoing p-3 my-3 justify-content-center">
 						<img src="" img="" imgLabel="peoplegoing" title="people going" description="people who will attend the event" />
 					</card>
