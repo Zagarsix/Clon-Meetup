@@ -1,11 +1,8 @@
 from flask import Blueprint, request, jsonify
-import datetime
-
-from models import User, Event, Meetup, db
-
-from flask_jwt_extended import create_access_token
-from flask_jwt_extended import get_jwt_identity, jwt_required
+from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required
 from flask_bcrypt import generate_password_hash, check_password_hash
+from models import User, Event, Meetup, db
+import datetime
 
 api= Blueprint("api",__name__,url_prefix="/api")
 
@@ -21,16 +18,16 @@ def register():
         body = request.get_json()
         # si alguno de estas variables no está
         if not "name" in body or not "lastname" in body or not "username" in body or not "email" in body or not "password" in body:    
-            return "Ha ocurrido un error"
+            return jsonify({"status":"failed", "msg":"Uno de los campos no fue ingresado correctamente", "data":None}), 400
 
         # si alguno de estos campos está vacío
         if body["name"] == "" or body["lastname"] == "" or body["username"] == "" or body["email"] == "" or body["password"] == "":
-            return jsonify({"msg":"Este campo es obligatorio", "data": None}), 400
+            return jsonify({"status": "failed", "msg":"Este campo es obligatorio", "data": None}), 400
         
         # si el usuario ya existe:
         userFound = User.query.filter_by(email=body["email"]).first()
         if userFound:
-            return jsonify({"msg":"El usuario ya existe", "data": None}), 400 
+            return jsonify({"status": "failed", "msg":"El usuario ya existe", "data": None}), 400 
 
         #instanciar una clase (crea un nuevo objeto):
         user = User()
@@ -44,11 +41,11 @@ def register():
         db.session.commit()
 
         print (body)
-        return jsonify({"msg":"Registrado exitosamente!", "data": None}), 200
+        return jsonify({"status":"success", "msg":"Registrado exitosamente!", "data": None}), 200
 
     except Exception as error:
         print(error)
-        return jsonify({"msg":"Ha ocurrido un error al registrarse!", "data":None}), 200
+        return jsonify({"status": "failed", "msg":"Ha ocurrido un error al registrarse!", "data":None}), 200
 
 ## ME MUESTRA TODOS LOS USUARIOS DE MI BASE DE DATOS
 @api.route("/users", methods=["GET"])
@@ -66,17 +63,17 @@ def login():
         body = request.get_json()
 
         if not "email" in body or not "password" in body:
-            return "Ha ocurrido un error"
+            return jsonify({"status":"failed", "msg":"Uno de los campos no fue ingresado correctamente", "data":None}), 400
 
         if body["email"] == "" or body["password"] == "":
-            return jsonify({"msg":"Este campo es obligatorio", "data":None}), 400 
+            return jsonify({"status": "failed", "msg":"Este campo es obligatorio", "data":None}), 400 
        
         #chequea si el usuario existe. Lo filtra a través del email y el password (deben coincidir)
         userExists = User.query.filter_by(email = body["email"]).first()
 
         # si el usuario no existe, o ingresa mal alguno de los campos
         if not userExists or not check_password_hash(userExists.password, body["password"]):
-            return jsonify({"msg":"Email y/o contraseña incorrecta", "data": None}), 401
+            return jsonify({"status":"failed", "msg":"Email y/o contraseña incorrecta", "data": None}), 401
         
         # Fecha de expiración del token
         expires = datetime.timedelta(days=1)
@@ -90,11 +87,11 @@ def login():
         }
 
         print (body)
-        return jsonify({"msg":"Inicio de sesión exitoso!","data": data}), 200
+        return jsonify({"status":"success", "msg":"Inicio de sesión exitoso!","data": data}), 200
 
     except Exception as error:
         print (error)
-        return jsonify({"msg":"Ha ocurrido un error en la base de datos","data": None}), 200    
+        return jsonify({"status":"failed", "msg":"Ha ocurrido un error en la base de datos","data": None}), 200    
 
 
 # RUTA PRIVADA
@@ -107,7 +104,7 @@ def profile():
     data = {
         "user": user.serialize()
     }
-    return jsonify({"msg":"Acceso correcto", "data":data}), 200
+    return jsonify({"status":"success", "msg":"Acceso correcto!", "data":data}), 200
 
 
 ## PARA AGREGAR EVENTOS
@@ -118,11 +115,11 @@ def create_events():
         body = request.get_json()
         # si alguno de estas variables no está
         if not "tittle" in body or not "content" in body or not "day" in body or not "time" in body or not "meetups" in body or not "image" in body:    
-            return "Ha ocurrido un error"
+            return jsonify({"status":"failed", "msg":"Uno de los campos no fue ingresado correctamente", "data":None}), 400
 
         # si alguno de estos campos está vacío
         if body["tittle"] == "" or body["content"] == "" or body["day"] == "" or body["time"] == "" or body["meetups"] == "":
-            return jsonify({"msg":"Este campo es obligatorio"}), 400
+            return jsonify({"status":"failed", "msg":"Este campo es obligatorio", "data":None}), 400
             
         event = Event()
         event.tittle = body["tittle"]
@@ -135,13 +132,13 @@ def create_events():
         db.session.add(event)
         db.session.commit()
 
-        return jsonify({"msg":"Excelente! Tu evento ha sido creado!"}), 200
+        return jsonify({"status":"success", "msg":"Excelente! Tu evento ha sido creado!", "data":None}), 200
 
     except Exception as error:
         print(error)
-        return "Ha ocurrido un error para crear el evento"
+        return jsonify({"status":"failed", "msg":"Ha ocurrido un error para crear el evento", "data":None}), 200
 
-# ME MUESTRA TODOS LOS EVENTOS DE MI BD
+# MUESTRA TODOS LOS EVENTOS DE MI BD
 @api.route("/events", methods=["GET"])
 def events():
     events = Event.query.all() #Para solicitar todos los eventos
@@ -159,7 +156,7 @@ def private_events():
     data = {
         "user": user.serialize()
     }
-    return jsonify({"msg":"Tus eventos", "data":data}), 200
+    return jsonify({"status":"success", "msg":"Tus eventos", "data":data}), 200
 
 ## PARA AGREGAR MEETUPS
 @api.route("/create_meetups", methods=["POST"])
@@ -169,11 +166,11 @@ def create_meetups():
         body = request.get_json()
         # si alguno de estas variables no está
         if not "name" in body or not "description" in body or not "image" in body:    
-            return "Ha ocurrido un error"
+            return jsonify({"status":"failed", "msg":"Uno de los campos no fue ingresado correctamente", "data":None}), 400
 
         # si alguno de estos campos está vacío
         if body["name"] == "" or body["description"] == "":
-            return jsonify({"msg":"Este campo es obligatorio"}), 400
+            return jsonify({"status":"failed", "msg":"Este campo es obligatorio", "data":None}), 400
 
         meetup = Meetup()
         meetup.name = body["name"]
@@ -184,11 +181,11 @@ def create_meetups():
         db.session.commit()
 
         print (body)
-        return jsonify({"msg":"Tu meetup ha sido creado exitosamente!","data": data}), 200
+        return jsonify({"status":"success", "msg":"Tu meetup ha sido creado exitosamente!","data": data}), 200
 
     except Exception as error:
         print(error)
-        return "Ha ocurrido un error al crear el Meetup"
+        return jsonify({"status":"failed", "msg":"Ha ocurrido un error al crear el Meetup", "data":None}), 200
 
 # ME MUESTRA TODOS LOS MEETUPS DE MI BD
 @api.route("/meetups", methods=["GET"])
@@ -208,4 +205,4 @@ def private_meetups():
     data = {
         "user": user.serialize()
     }
-    return jsonify({"msg":"Tu meetup", "data":data}), 200
+    return jsonify({"status":"success", "msg":"Tu meetup", "data":data}), 200
