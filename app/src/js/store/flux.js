@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
@@ -96,6 +95,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			username: "",
 			email: "",
 			password: "",
+			errors: null,
+			currentUser: null,
 		},
 
 		actions: {
@@ -124,18 +125,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 					body: JSON.stringify(fields),
 				});
 
-				const { status, message, data } = await response.json();
+				const { status, msg, data } = await response.json();
 
 				console.log(data);
 
 				// Display a certain notification based on status of the fetch data
 				if (status === "failed") {
-					toast.error(message);
+					toast(msg);
+					console.log("Hola toasterror")
 				}
 				if (status === "success") {
 					Swal.fire({
 						icon: "success",
-						title: message,
+						title: msg,
 						showConfirmButton: false,
 						timer: 1500,
 					});
@@ -152,7 +154,58 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			handleRegister: async (e) => {
+				e.preventDefault();
 
+				const { apiURL, name, lastname, username, email, password } = getStore();
+
+				const fields = {
+					name: name,
+					lastname: lastname,
+					username: username,
+					email: email,
+					password: password,
+				};
+
+				// Fetching data from API
+				const response = await fetch(`${apiURL}/api/register`, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(fields),
+				});
+
+				const { status, msg, data } = await response.json();
+
+				console.log(data);
+
+				// Display a certain notification based on status of the fetch data
+				if (status === "failed") {
+					toast.error(msg);
+				}
+				if (status === "success") {
+					Swal.fire({
+						icon: "success",
+						title: msg,
+						showConfirmButton: false,
+						timer: 1500,
+					});
+
+					// Saving user data on session storage
+					sessionStorage.setItem("currentUser", JSON.stringify(data));
+				};
+
+				setStore({
+					currentUser: data,
+					// clear data if user sign out
+					name: "",
+					lastname:"",
+					username:"",
+					email: "",
+					password: "",
+				});
+			}
 
 
 

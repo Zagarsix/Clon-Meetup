@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import logo from "../../img/Meetup-logo.png";
@@ -7,7 +7,7 @@ import logo from "../../img/Meetup-logo.png";
 export const Navbar = () => {
 
 	const { store, actions } = useContext(Context);
-	const [showPassword, setShowPassword] = useState(false);
+	// const [showPassword, setShowPassword] = useState(false);
 
 
 	return (
@@ -31,7 +31,7 @@ export const Navbar = () => {
 					</button>
 				</div>
 				{/* <!-- Modal Login --> */}
-				<div className="modal fade" id="button-login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div className="modal fade" id="button-login" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div className="modal-dialog">
 						<form onSubmit={(e) => actions.handleLogin(e)}>
 							<div className="modal-content">
@@ -44,18 +44,18 @@ export const Navbar = () => {
 										<input
 											type="text"
 											className="form-control"
-											id="email"
+											id="email-login"
 											name="email"
 											placeholder="email"
-											value={store.events.email}
+											value={store.email}
 											onChange={actions.handleChange}
 										/>
 									</div>
-									<div Class="d-flex col-md-6">
+									<div className="d-flex col-md-6">
 										<input
 											type="password"
 											className="form-control"
-											id="password"
+											id="password-login"
 											name="password"
 											placeholder="Password"
 											value={store.password}
@@ -75,9 +75,9 @@ export const Navbar = () => {
 					</div>
 				</div>
 				{/* <!-- Modal Register--> */}
-				<div className="modal fade" id="button-register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div className="modal fade" id="button-register" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div className="modal-dialog">
-						<form onSubmit={(e) => actions.handleLogin(e)}>
+						<form onSubmit={(e) => actions.handleRegister(e)}>
 							<div className="modal-content">
 								<div className="modal-header">
 									<h1 className="modal-title fs-5" id="exampleModalLabel">Register</h1>
@@ -91,7 +91,7 @@ export const Navbar = () => {
 											id="name"
 											name="name"
 											placeholder="name"
-											value={store.events.name}
+											value={store.name}
 											onChange={actions.handleChange}
 										/>
 									</div>
@@ -102,7 +102,7 @@ export const Navbar = () => {
 											id="lastname"
 											name="lastname"
 											placeholder="lastname"
-											value={store.events.lastname}
+											value={store.lastname}
 											onChange={actions.handleChange}
 										/>
 									</div>
@@ -113,7 +113,7 @@ export const Navbar = () => {
 											id="username"
 											name="username"
 											placeholder="username"
-											value={store.events.username}
+											value={store.username}
 											onChange={actions.handleChange}
 										/>
 									</div>
@@ -124,11 +124,11 @@ export const Navbar = () => {
 											id="email"
 											name="email"
 											placeholder="email"
-											value={store.events.email}
+											value={store.email}
 											onChange={actions.handleChange}
 										/>
 									</div>
-									<div Class="d-flex col-md-6">
+									<div className="d-flex col-md-6">
 										<input
 											type="password"
 											className="form-control"
@@ -145,7 +145,7 @@ export const Navbar = () => {
 
 								</div>
 								<div className="modal-footer justify-content-start">
-									<button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Register now</button>
+									<button type="submit" className="btn btn-secondary" data-bs-dismiss="modal">Register now</button>
 								</div>
 							</div>
 						</form>
