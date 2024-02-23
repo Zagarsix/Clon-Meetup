@@ -9,6 +9,7 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { ToastContainer } from "react-toastify";
+import { Profile } from "./views/profile";
 
 
 //create your first component
@@ -25,6 +26,7 @@ const Layout = () => {
 						<Route path="/" element={<Home />} />
 						<Route path="/events/:index" element={<Events />} />
 						<Route path="/meetup/:theid" element={<Meetup />} />
+						<Route path="/profile" element={<Profile />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
 					</Routes>
 					<Footer />

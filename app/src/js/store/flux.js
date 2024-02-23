@@ -131,8 +131,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				// Display a certain notification based on status of the fetch data
 				if (status === "failed") {
-					toast(msg);
-					console.log("Hola toasterror")
+					toast.warn(msg),{
+						position: "bottom-center",
+						autoClose: 5000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: false,
+						draggable: true,
+						progress: undefined,
+						theme: "dark",
+						transition: "Bounce",
+					}
 				}
 				if (status === "success") {
 					Swal.fire({
@@ -205,9 +214,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					email: "",
 					password: "",
 				});
-			}
-
-
+			},
+			
+			loadProfile: () => {
+				const { currentUser } = getStore();
+		
+				console.log(currentUser)
+			  },
 
 
 

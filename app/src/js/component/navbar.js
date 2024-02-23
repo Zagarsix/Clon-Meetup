@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { Context } from "../store/appContext";
 import logo from "../../img/Meetup-logo.png";
@@ -8,7 +8,14 @@ export const Navbar = () => {
 
 	const { store, actions } = useContext(Context);
 	// const [showPassword, setShowPassword] = useState(false);
+	const navigate = useNavigate();
 
+	useEffect(() => { }, []);
+
+	// If user signed in, redirect to home page
+	useEffect(() => {
+		// if (store.currentUser !== null) navigate("/profile");
+	}, [store.currentUser]);
 
 	return (
 		<div className="container-fluid d-flex justify-content-between" style={{ backgroundColor: "rgb(66,66,66)" }}
