@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import logo from "../../img/Meetup-logo.png";
 
@@ -8,14 +8,11 @@ export const Navbar = () => {
 
 	const { store, actions } = useContext(Context);
 	// const [showPassword, setShowPassword] = useState(false);
-	const navigate = useNavigate();
+  	const navigate = useNavigate();
 
-	useEffect(() => { }, []);
+  	useEffect(() => {}, []);
 
-	// If user signed in, redirect to home page
-	useEffect(() => {
-		// if (store.currentUser !== null) navigate("/profile");
-	}, [store.currentUser]);
+  // If user is not signed in, redirect to login
 
 	return (
 		<div className="container-fluid d-flex justify-content-between" style={{ backgroundColor: "rgb(66,66,66)" }}
@@ -26,7 +23,43 @@ export const Navbar = () => {
 					<img src={logo} alt="logo-4Geeks" width={150} height={80}></img>
 				</Link>
 			</div>
-
+			{!!store.currentUser ? (
+              <li className="nav-item dropdown">
+                <a
+                  className="nav-link dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  href="#"
+                  role="button"
+                  aria-expanded="false"
+                >
+                  {store.currentUser?.user?.profile?.name ||
+                    store.currentUser?.user?.email}
+                </a>
+                <ul className="dropdown-menu">
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Settings
+                    </a>
+                  </li>
+                  <li>
+                    <a className="dropdown-item" href="#">
+                      Another settings
+                    </a>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider" />
+                  </li>
+                  <li>
+                    <button
+                      className="dropdown-item"
+                      onClick={actions.handleLogout}
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </li>
+			):(
 			<div className="button py-1 m-2">
 				{/* <!-- Button trigger modal --> */}
 				<div className="d-flex">
@@ -159,6 +192,7 @@ export const Navbar = () => {
 					</div>
 				</div>
 			</div>
+			)}
 		</div >
 
 
