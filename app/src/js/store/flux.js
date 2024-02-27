@@ -131,7 +131,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				// Display a certain notification based on status of the fetch data
 				if (status === "failed") {
-					toast.warn(msg),{
+					toast.warn(msg), {
 						position: "bottom-center",
 						autoClose: 5000,
 						hideProgressBar: false,
@@ -209,19 +209,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 					currentUser: data,
 					// clear data if user sign out
 					name: "",
-					lastname:"",
-					username:"",
+					lastname: "",
+					username: "",
 					email: "",
 					password: "",
 				});
 			},
-			
+
 			loadProfile: () => {
 				const { currentUser } = getStore();
-		
-				console.log(currentUser)
-			  },
 
+				console.log(currentUser)
+			},
+			checkAuth: () => {
+				if (sessionStorage.getItem("currentUser")) {
+					setStore({
+						currentUser: JSON.parse(sessionStorage.getItem("currentUser")),
+					});
+				}
+			},
+			handleLogout: () => {
+				if (sessionStorage.getItem("currentUser")) {
+					sessionStorage.removeItem("currentUser");
+					setStore({
+						email: "",
+						password: "",
+						currentUser: null,
+					});
+					getActions().checkAuth();
+				}
+			},
 
 
 
