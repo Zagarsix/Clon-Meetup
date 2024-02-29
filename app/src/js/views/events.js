@@ -28,7 +28,7 @@ export const Events = () => {
 				</main>
 				<div className="card p-2">
 					<card className="PeopleGoing p-3 my-3 justify-content-center">
-						<img src="" img="" imgLabel="peoplegoing" title="people going" description="people who will attend the event" />
+						<img src="" img="" imglabel="peoplegoing" title="people going" description="people who will attend the event" />
 					</card>
 				</div>
 			</div>
@@ -36,7 +36,7 @@ export const Events = () => {
 				<div className="detailsEvent">
 					<div className="row justify-content-between align-items-start">
 						<div className="cardEvent col-md-6">
-							<img src="" img="" imgLabel="" title="" description="photo of event" />
+							<img src="" img="" imglabel="" title="" description="photo of event" />
 
 						</div>
 						<div className="resumeEvent col-md-2 mt-4">

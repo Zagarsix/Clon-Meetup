@@ -23,7 +23,7 @@ export const Meetup = props => {
 		<>
 			<div className="d-flex justify-content-between" style={{ backgroundColor: "rgb(66,66,66)", color: "white" }}>
 				<div className="cardMeetup">
-					<img src="" img="" imgLabel="" title="" description="" />
+					<img src="" img="" imglabel="" title="" description="" />
 				</div>
 				<div className="nameMeetup">
 					<h1 className="display-5 p-2 mx-2">{organizador[0].name}</h1>
@@ -36,7 +36,7 @@ export const Meetup = props => {
 					
 			{store.events.map((item, index) => {
 				return (
-					<section className="container d-flex justify-content-between py-1 mt-2">
+					<section className="container d-flex justify-content-between py-1 mt-2" key={index}>
 						<div className="list-group-item">
 							<div className="dateEvent" style={{ background: "rgb(228, 228, 228)", width: "100%" }}>
 								<h1>{item.day}</h1>

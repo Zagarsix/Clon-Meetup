@@ -38,12 +38,7 @@ export const Navbar = () => {
                 <ul className="dropdown-menu">
                   <li>
                     <a className="dropdown-item" href="#">
-                      Settings
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="#">
-                      Another settings
+                      Update
                     </a>
                   </li>
                   <li>
@@ -194,7 +189,5 @@ export const Navbar = () => {
 			</div>
 			)}
 		</div >
-
-
 	);
 };

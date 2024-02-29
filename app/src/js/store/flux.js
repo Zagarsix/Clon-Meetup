@@ -239,7 +239,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					getActions().checkAuth();
 				}
 			},
+		}
+	}
+};
 
+export default getState;
 
 
 			// // Use getActions to call a function within a fuction
@@ -264,9 +268,3 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			//reset the global store
 			// setStore({ events: events });
-		}
-	}
-};
-
-
-export default getState;
