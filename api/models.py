@@ -17,6 +17,7 @@ class User (db.Model):
     email = Column(String(100), unique=True, nullable=False)
     password = Column(String(255), nullable=False)
     is_active = Column(Boolean(), default=True)
+    meetups = relationship("Meetup")
 
     def serialize(self):
         return {
@@ -46,7 +47,7 @@ class Meetup (db.Model):
     description = Column(String(255))
     image = Column(String(255))
     events = relationship("Event")
-
+    user_id = Column(Integer, ForeignKey("users.id"))
 
     def serialize(self):
         return{

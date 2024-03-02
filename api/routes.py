@@ -181,7 +181,7 @@ def create_meetups():
         db.session.commit()
 
         print (body)
-        return jsonify({"status":"success", "msg":"Tu meetup ha sido creado exitosamente!","data": data}), 200
+        return jsonify({"status":"success", "msg":"Tu meetup ha sido creado exitosamente!","data":None}), 200
 
     except Exception as error:
         print(error)
