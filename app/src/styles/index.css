@@ -2,22 +2,24 @@
     General Styles
 */
 html {
-  min-height: 100%;
+  height: 100%;
   position: relative;
 }
 
 body {
-    margin: 0;
-    margin-bottom: 40px;
-    display: grid;
-    min-height: 100vh;
-    grid-template-rows: auto 1fr auto;
-  }
-  
+  height: 100%;
+  margin: 0;
+  margin-bottom: 40px;
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+}
+
 footer {
-    background-color: rgb(66,66,66);
-    bottom: 0;
-    width: 100%;
-    height: 40px;
-    color: white;
-  }
+  background-color: rgb(66, 66, 66);
+  position: absolute fixed;
+  
+  bottom: 0;
+  width: 100%;
+  color: white;
+}
